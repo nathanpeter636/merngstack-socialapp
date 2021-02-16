@@ -39,8 +39,8 @@ module.exports = {
 
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
-        errors.general = 'Wrong credentials';
-        throw new UserInputError('Wrong credentials', { errors });
+        errors.general = 'Wrong crendetials';
+        throw new UserInputError('Wrong crendetials', { errors });
       }
 
       const token = generateToken(user);
