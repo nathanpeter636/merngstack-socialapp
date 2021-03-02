@@ -11,6 +11,10 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import MenuBar from './components/Menubar'
 
+import {AuthProvider} from './context/auth'
+
+import AuthRoute from './util/AuthRoute'
+
 const httpLink = createHttpLink({
   uri: 'http://localhost:5000'
 });
@@ -23,14 +27,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client} httpLink={httpLink} >
+      <AuthProvider>
       <Router>
         <Container>
         <MenuBar/>
         <Route exact path='/' component={Home}/>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/register' component={Register}/>
+        <AuthRoute exact path='/login' component={Login}/>
+        <AuthRoute exact path='/register' component={Register}/>
         </Container>
       </Router>
+      </AuthProvider>
     </ApolloProvider>
   );
 }
