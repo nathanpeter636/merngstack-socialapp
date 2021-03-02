@@ -31,6 +31,7 @@ function Home() {
   );
 }
 
+
 const FETCH_POSTS_QUERY = gql`
   {
     getPosts {
