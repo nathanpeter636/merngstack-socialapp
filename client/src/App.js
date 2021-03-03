@@ -1,43 +1,31 @@
-import React from 'react';
+import React from "react";
 
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css';
-import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from "@apollo/client"
-import './App.css'
-import { Container } from 'semantic-ui-react'
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
 
-import Home from './pages/Home'
-import Register from './pages/Register'
-import Login from './pages/Login'
-import MenuBar from './components/Menubar'
+import "./App.css";
+import { Container } from "semantic-ui-react";
 
-import {AuthProvider} from './context/auth'
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import MenuBar from "./components/Menubar";
 
-import AuthRoute from './util/AuthRoute'
-
-const httpLink = createHttpLink({
-  uri: 'http://localhost:5000'
-});
-
-const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache()
-});
+import { AuthProvider } from "./context/auth";
+import AuthRoute from "./util/AuthRoute";
 
 function App() {
   return (
-    <ApolloProvider client={client} httpLink={httpLink} >
-      <AuthProvider>
+    <AuthProvider>
       <Router>
         <Container>
-        <MenuBar/>
-        <Route exact path='/' component={Home}/>
-        <AuthRoute exact path='/login' component={Login}/>
-        <AuthRoute exact path='/register' component={Register}/>
+          <MenuBar />
+          <Route exact path="/" component={Home} />
+          <AuthRoute exact path="/login" component={Login} />
+          <AuthRoute exact path="/register" component={Register} />
         </Container>
       </Router>
-      </AuthProvider>
-    </ApolloProvider>
+    </AuthProvider>
   );
 }
 
