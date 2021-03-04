@@ -9,6 +9,8 @@ import PostCard from '../components/PostCard';
 
 import PostForm from '../components/PostForm'
 
+import { FETCH_POSTS_QUERY } from '../util/grapql'
+
 function Home() {
 
   const { user } = useContext(AuthContext)
@@ -44,26 +46,6 @@ function Home() {
 }
 
 
-const FETCH_POSTS_QUERY = gql`
-  {
-    getPosts {
-      id
-      body
-      createdAt
-      username
-      likeCount
-      likes {
-        username
-      }
-      commentCount
-      comments {
-        id
-        username
-        createdAt
-        body
-      }
-    }
-  }
-`;
+
 
 export default Home;
