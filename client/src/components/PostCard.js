@@ -9,6 +9,8 @@ import { AuthContext} from '../context/auth'
 
 import LikeButton from '../components/LikeButton'
 
+import DeleteButton from '../components/DeleteButton'
+
 function PostCard({post: { body, createdAt, id, username, likes, likeCount, commentCount}}) {
 
 
@@ -53,11 +55,7 @@ function PostCard({post: { body, createdAt, id, username, likes, likeCount, comm
       </Label>
     </Button>
 
-    {user && user.username === username && (
-      <Button as="div" color="red" floated="right" onClick={() => console.log('delete clicked')} >
-        <Icon name="trash" style={{margin: 0}}/>
-      </Button>
-    )}
+    {user && user.username === username && <DeleteButton postId={id} /> }
         </Card.Content>
       </Card>
         
